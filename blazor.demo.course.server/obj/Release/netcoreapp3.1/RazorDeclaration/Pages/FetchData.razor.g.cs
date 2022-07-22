@@ -75,8 +75,15 @@ using blazor.demo.course.server.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/bonus")]
-    public partial class Bonus : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\FetchData.razor"
+using blazor.demo.course.server.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fetchdata")]
+    public partial class FetchData : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -84,22 +91,19 @@ using blazor.demo.course.server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 21 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Bonus.razor"
+#line 39 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\FetchData.razor"
        
-    decimal totalBudget = 1000000;
+    private WeatherForecast[] forecasts;
 
-    decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
-
-    List<BudgetItem> budgetItems = new List<BudgetItem>
+    protected override async Task OnInitializedAsync()
     {
-        new BudgetItem { Name = "Developers"},
-        new BudgetItem { Name = "Managers"},
-        new BudgetItem { Name = "Sales"},
-    };
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private WeatherForecastService ForecastService { get; set; }
     }
 }
 #pragma warning restore 1591

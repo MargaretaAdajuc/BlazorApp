@@ -75,31 +75,14 @@ using blazor.demo.course.server.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/bonus")]
-    public partial class Bonus : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
+    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 21 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Bonus.razor"
-       
-    decimal totalBudget = 1000000;
-
-    decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
-
-    List<BudgetItem> budgetItems = new List<BudgetItem>
-    {
-        new BudgetItem { Name = "Developers"},
-        new BudgetItem { Name = "Managers"},
-        new BudgetItem { Name = "Sales"},
-    };
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

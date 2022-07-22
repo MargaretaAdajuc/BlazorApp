@@ -75,8 +75,8 @@ using blazor.demo.course.server.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/bonus")]
-    public partial class Bonus : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/counter")]
+    public partial class Counter : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -84,18 +84,14 @@ using blazor.demo.course.server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 21 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Bonus.razor"
+#line 9 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Counter.razor"
        
-    decimal totalBudget = 1000000;
+    private int currentCount = 0;
 
-    decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
-
-    List<BudgetItem> budgetItems = new List<BudgetItem>
+    private void IncrementCount()
     {
-        new BudgetItem { Name = "Developers"},
-        new BudgetItem { Name = "Managers"},
-        new BudgetItem { Name = "Sales"},
-    };
+        currentCount++;
+    }
 
 #line default
 #line hidden

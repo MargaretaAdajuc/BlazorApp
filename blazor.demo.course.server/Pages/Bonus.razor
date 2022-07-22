@@ -19,7 +19,6 @@
 <button disabled="@(Remaining > 0)">Save</button>
 
 @code {
-
     decimal totalBudget = 1000000;
 
     decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
