@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace blazor.demo.course.server.Pages
+namespace blazor.demo.course.server.Shared
 {
     #line hidden
     using System;
@@ -75,8 +75,7 @@ using blazor.demo.course.server.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/bonus")]
-    public partial class Bonus : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -84,18 +83,11 @@ using blazor.demo.course.server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 21 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Bonus.razor"
+#line 12 "F:\NET-TECH-COURSE\blazor.demo.course.server\Shared\SurveyPrompt.razor"
        
-    decimal totalBudget = 1000000;
-
-    decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
-
-    List<BudgetItem> budgetItems = new List<BudgetItem>
-    {
-        new BudgetItem { Name = "Developers"},
-        new BudgetItem { Name = "Managers"},
-        new BudgetItem { Name = "Sales"},
-    };
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
 
 #line default
 #line hidden
