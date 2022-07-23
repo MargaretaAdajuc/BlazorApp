@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30709.132
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.Server", "Server\PaySys.Server.csproj", "{B4AA0C53-D3F4-4508-A1AD-10C6F3511ED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaySys.Server", "Server\PaySys.Server.csproj", "{B4AA0C53-D3F4-4508-A1AD-10C6F3511ED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.Client", "Client\PaySys.Client.csproj", "{4469B4DC-6E82-4B72-BECD-E5249C4CFE99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaySys.Client", "Client\PaySys.Client.csproj", "{4469B4DC-6E82-4B72-BECD-E5249C4CFE99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.Shared", "Shared\PaySys.Shared.csproj", "{F3ED29E0-E33F-4CE1-BA03-4F65387D76DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaySys.Shared", "Shared\PaySys.Shared.csproj", "{F3ED29E0-E33F-4CE1-BA03-4F65387D76DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

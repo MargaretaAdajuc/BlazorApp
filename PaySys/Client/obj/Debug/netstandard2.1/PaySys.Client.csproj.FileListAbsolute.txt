@@ -809,6 +809,8 @@ F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.dll
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.pdb
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\6fI24aTz-u_tjuBYmKKoT4v3NLhtz9ecADG1JxaG7Jw=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\2ifGbz0ptIWcf0MGS1DJ6gq7maZrZ_mBRBuf71P9Ij4=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\0ocGfmDHOBIrsAxEgb1TqUQTRYu2fhYpyI9raH1NFN8=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\tQsApQ3mKag25YFhEboYTojecwuEJ4y7eyD_F4QUI8Y=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\IqtQRa4NjG1QMLlt8J0JROlChYHL-AA7pCQo_oTwfo0=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Transfer.razor.g.cs
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\Razor\Pages\Transfer.razor.g.cs
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\8lMbTx85P2b9kQtGmWVQ7_n_HZkKLSBNYhOOkYXtWwI=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\ppr27AuPuAMkRmZ5fLSCIz9KVvhHrhQPxgvtwQdQStY=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\WmwsRdN9XTz3l9itaWi1OOYSLXevSMEYGrDRt647ENM=.hash

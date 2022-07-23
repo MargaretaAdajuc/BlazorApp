@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @attribute [Authorize]
 @inject HttpClient HttpClient
+@inject NavigationManager navMananger
 
 <style>
     .wallet{
@@ -32,6 +33,7 @@ else
             </div>
             <div>
                 <button @onclick="() => DeleteWallet(wallet.Id)">Delete wallet</button>
+                <button @onclick="() => MakeTransfer(wallet.Id)">Make Transfer</button>
             </div>
         </div>
     }
@@ -56,7 +58,7 @@ else
     {
         try
         {
-            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>("/wallet");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>($"/wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -71,7 +73,7 @@ else
             if (string.IsNullOrWhiteSpace(Currency))
                 return; 
 
-            var response = await HttpClient.PostAsync("/wallet?currency=" + Currency, null);
+            var response = await HttpClient.PostAsync($"/wallet?currency=" + Currency, null);
 
             if (response.IsSuccessStatusCode)
             {
@@ -83,13 +85,25 @@ else
             exception.Redirect();
         } 
     }
-
+    
     private async Task DeleteWallet(Guid id)
     {
         try
         {
-            await HttpClient.DeleteAsync("api/wallet" + id);
+            await HttpClient.DeleteAsync($"api/wallet" + id);
             await LoadWallets();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        } 
+    }
+
+    private async Task MakeTransfer(Guid id)
+    {
+        try
+        {
+            navMananger.NavigateTo($"/transfer/{id}");
         }
         catch (AccessTokenNotAvailableException exception)
         {
