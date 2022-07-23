@@ -64,11 +64,14 @@ namespace PaySys.Server.Controllers
             var user = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId);
 
             if (!user.Wallets.Any(x => x.Id == id))
+            {
                 return BadRequest();
+            }
 
             var wallet = context.Wallets.Find(id);
             context.Wallets.Remove(wallet);
             context.SaveChanges();
+
             return Ok();
         }
     }

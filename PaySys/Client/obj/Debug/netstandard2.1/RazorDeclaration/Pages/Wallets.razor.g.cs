@@ -165,7 +165,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     {
         try
         {
-            await HttpClient.DeleteAsync("/wallet" + id);
+            await HttpClient.DeleteAsync("api/wallet" + id);
             await LoadWallets();
         }
         catch (AccessTokenNotAvailableException exception)
