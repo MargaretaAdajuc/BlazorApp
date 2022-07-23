@@ -7,6 +7,7 @@
 
 <style>
     .wallet{
+        width: 250px;
         border: 1px solid #555;
         border-radius: 5px;
         padding: 10px;
@@ -15,7 +16,7 @@
 
 <h3>Wallets</h3>
 
-@if (WalletList == null || WalletList.Length == 0)
+@if (WalletList == null || WalletList.Count == 0)
 {
     <div>Loading...</div>
 }
@@ -26,22 +27,28 @@ else
         <div class="wallet">
             <div>@wallet.Id</div>
             <div>
-                <div>@wallet.Amount</div>
-                <div>@wallet.Currency</div>
+                <span>@wallet.Amount</span>
+                <span>@wallet.Currency</span>
             </div>
         </div>
     }
 }
 
+<div>   
+    <h3>Create a new wallet</h3>
+    <input type="text" placeholder="Currency" @bind="Currency" />
+    <button @onclick="() => CreateWallet()">Create wallet</button>
+</div>
 
 @code {
-    private Wallet[] WalletList;
+    private List<Wallet> WalletList;
+    private string Currency;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            WalletList = await HttpClient.GetFromJsonAsync<Wallet[]>("api/wallet");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>("/wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -49,4 +56,30 @@ else
         }
     }
 
+    private async Task CreateWallet()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(Currency))
+                return; 
+
+            var response = await HttpClient.PostAsync("/wallet?currency=" + Currency, null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var newWallet = new Wallet
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = 0,
+                    Currency = Currency
+                };
+
+                WalletList.Add(newWallet);
+            }
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        } 
+    }
 }

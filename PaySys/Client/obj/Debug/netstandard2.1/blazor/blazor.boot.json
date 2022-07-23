@@ -6,7 +6,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "PaySys.Client.dll": "sha256-VVLF8RIzmQFPJ3qXMUiQSDCq9OYL9KrGR8xkYbIQBeU=",
+      "PaySys.Client.dll": "sha256-HArw0hsc3JblI8HjCf7a\/MnLtfq1l5DtPmeMIxqqDsI=",
       "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -44,7 +44,7 @@
       "Microsoft.Extensions.Logging.Abstractions.dll": "sha256-6gJMwefpsWLHWsEipZp143xn8k2Ea27upnXqjUT6iNI=",
       "Microsoft.Extensions.Options.dll": "sha256-rvTW0d54uLW0iDMAX30lpmr9f8uHoS3YYkEU5zNGhyc=",
       "Microsoft.Extensions.Primitives.dll": "sha256-y\/FyJQOcW2TOcTp7Iuv8brGBzL5ZP0oJdG7ysK+gtKc=",
-      "PaySys.Shared.dll": "sha256-SA9dJAWkVSHcwvL8xJaA4e71bMv1dONqHT4K1ib9v9s=",
+      "PaySys.Shared.dll": "sha256-6fI24aTz\/u+tjuBYmKKoT4v3NLhtz9ecADG1JxaG7Jw=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-4NUQ26HmvXRi8smc0jz9940OUECDLQnoMWQLrMLe0ok=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-825GQI5nG1C1WqLD1SNKSpjzLCNbH2\/KChgjBL0SSXI=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-bSgsT2x5xMvs8mara5wU+EJwcyHa9GVMU85HwhWcdWM=",
@@ -66,8 +66,8 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-czNf3btAeBW\/vvID5LAfgcsNZ+GM3ssVuPaMflcg0rs="
     },
     "pdb": {
-      "PaySys.Client.pdb": "sha256-Y31bMlOtRux0qbq61DNSJMS2Qk5Fzv8iQ9Mg3zVqecI=",
-      "PaySys.Shared.pdb": "sha256-DS9anJuoumXuF3Z0iFd36YleNinvzTqAEcp\/\/8FQ48o="
+      "PaySys.Client.pdb": "sha256-MRJSjdtrL18k2GHp78xAHPa3qfj39yI0AWO0HqbtUng=",
+      "PaySys.Shared.pdb": "sha256-2ifGbz0ptIWcf0MGS1DJ6gq7maZrZ+mBRBuf71P9Ij4="
     },
     "runtime": {
       "dotnet.3.2.0.js": "sha256-mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=",

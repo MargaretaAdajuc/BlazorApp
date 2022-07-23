@@ -610,7 +610,6 @@ F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\Razor\Shared\RedirectT
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\Razor\Shared\SurveyPrompt.razor.g.cs
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\Razor\_Imports.razor.g.cs
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\blazor\unlinked.output
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\VVLF8RIzmQFPJ3qXMUiQSDCq9OYL9KrGR8xkYbIQBeU=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\99dseBOagY3mzu5Y8Eqm8gRI_o8QbbCp7R2Ew9bQ_5E=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\ZxXy75PYbzJxNfAc-SAP1nUYm4gt1jSaOpFnBb9m85M=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\BaZPMj95_YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=.hash
@@ -648,7 +647,6 @@ F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\oK1Bjv95fH_h
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\6gJMwefpsWLHWsEipZp143xn8k2Ea27upnXqjUT6iNI=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\rvTW0d54uLW0iDMAX30lpmr9f8uHoS3YYkEU5zNGhyc=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\y-FyJQOcW2TOcTp7Iuv8brGBzL5ZP0oJdG7ysK_gtKc=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\SA9dJAWkVSHcwvL8xJaA4e71bMv1dONqHT4K1ib9v9s=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\4NUQ26HmvXRi8smc0jz9940OUECDLQnoMWQLrMLe0ok=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\825GQI5nG1C1WqLD1SNKSpjzLCNbH2-KChgjBL0SSXI=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\bSgsT2x5xMvs8mara5wU_EJwcyHa9GVMU85HwhWcdWM=.hash
@@ -668,14 +666,11 @@ F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\tY1dlliVr_yG
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\r8LuqDQgcB-c3E48xHqsAY1eRZB1ZtuqZF6nlufn7kg=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\DrtNiKIMjfSOdamH5Bs5zHmjFADgNiwrY5tRgTm6XuI=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\czNf3btAeBW-vvID5LAfgcsNZ_GM3ssVuPaMflcg0rs=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\Y31bMlOtRux0qbq61DNSJMS2Qk5Fzv8iQ9Mg3zVqecI=.hash
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\DS9anJuoumXuF3Z0iFd36YleNinvzTqAEcp--8FQ48o=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\3S0qzYaBEKOBXarzVLNzNAFXlwJr6nI3lFlYUpQTPH8=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\UC-3Rm1NkdNdlIrzYARo_dO-HDlS5mhPxo0IQv7kma8=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\SPHS1EAPAcMFN4TEIUYl3FWtoCQTsNJch0XVGgok1eE=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\blazor\blazor.boot.json
-F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\naeCgM-fwFyZ9dktu0Q5Mrudm62NCc39wN93kA2yMKA=.hash
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\PaySys.Client.dll.gz
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Net.Http.Json.dll.gz
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Buffers.dll.gz
@@ -812,3 +807,8 @@ F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.RazorTar
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.csproj.CopyComplete
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.dll
 F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\PaySys.Client.pdb
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\6fI24aTz-u_tjuBYmKKoT4v3NLhtz9ecADG1JxaG7Jw=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\2ifGbz0ptIWcf0MGS1DJ6gq7maZrZ_mBRBuf71P9Ij4=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\HArw0hsc3JblI8HjCf7a-MnLtfq1l5DtPmeMIxqqDsI=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\MRJSjdtrL18k2GHp78xAHPa3qfj39yI0AWO0HqbtUng=.hash
+F:\NET-TECH-COURSE\PaySys\Client\obj\Debug\netstandard2.1\integrity\c1m-20-jSWnzxHiUjwVQgTt6I9TqVstsnm_HhqWOh00=.hash

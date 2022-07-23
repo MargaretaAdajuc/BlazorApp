@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\VVLF8RIzmQFPJ3qXMUiQSDCq9OYL9KrGR8xkYbIQBeU=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\HArw0hsc3JblI8HjCf7a-MnLtfq1l5DtPmeMIxqqDsI=.hash",
       "Source": "F:\\NET-TECH-COURSE\\PaySys\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\PaySys.Client.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/PaySys.Client.dll.gz"
     },
@@ -191,7 +191,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Primitives.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\SA9dJAWkVSHcwvL8xJaA4e71bMv1dONqHT4K1ib9v9s=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\6fI24aTz-u_tjuBYmKKoT4v3NLhtz9ecADG1JxaG7Jw=.hash",
       "Source": "F:\\NET-TECH-COURSE\\PaySys\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\PaySys.Shared.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/PaySys.Shared.dll.gz"
     },
@@ -291,12 +291,12 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\Y31bMlOtRux0qbq61DNSJMS2Qk5Fzv8iQ9Mg3zVqecI=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\MRJSjdtrL18k2GHp78xAHPa3qfj39yI0AWO0HqbtUng=.hash",
       "Source": "F:\\NET-TECH-COURSE\\PaySys\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\PaySys.Client.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/PaySys.Client.pdb.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\DS9anJuoumXuF3Z0iFd36YleNinvzTqAEcp--8FQ48o=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\2ifGbz0ptIWcf0MGS1DJ6gq7maZrZ_mBRBuf71P9Ij4=.hash",
       "Source": "F:\\NET-TECH-COURSE\\PaySys\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\PaySys.Shared.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/PaySys.Shared.pdb.gz"
     },
@@ -321,7 +321,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\naeCgM-fwFyZ9dktu0Q5Mrudm62NCc39wN93kA2yMKA=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\c1m-20-jSWnzxHiUjwVQgTt6I9TqVstsnm_HhqWOh00=.hash",
       "Source": "F:\\NET-TECH-COURSE\\PaySys\\Client\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.gz"
     }
