@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PaySys.Server.Data;
 
-namespace PaySys.Server.Data.Migrations
+namespace PaySys.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -319,9 +319,6 @@ namespace PaySys.Server.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -332,8 +329,6 @@ namespace PaySys.Server.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Transactions");
                 });
@@ -347,10 +342,15 @@ namespace PaySys.Server.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Currency")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Wallets");
                 });
@@ -406,7 +406,7 @@ namespace PaySys.Server.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PaySys.Server.Models.Transaction", b =>
+            modelBuilder.Entity("PaySys.Server.Models.Wallet", b =>
                 {
                     b.HasOne("PaySys.Server.Models.ApplicationUser", null)
                         .WithMany("Wallets")
