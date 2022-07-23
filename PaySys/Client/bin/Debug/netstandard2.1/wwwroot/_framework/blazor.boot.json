@@ -6,7 +6,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "PaySys.Client.dll": "sha256-HArw0hsc3JblI8HjCf7a\/MnLtfq1l5DtPmeMIxqqDsI=",
+      "PaySys.Client.dll": "sha256-VbHlMYw0ZGRkv+ynH07F+K+VL1sMzaMWjBq61HVH8GA=",
       "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -66,7 +66,7 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-czNf3btAeBW\/vvID5LAfgcsNZ+GM3ssVuPaMflcg0rs="
     },
     "pdb": {
-      "PaySys.Client.pdb": "sha256-MRJSjdtrL18k2GHp78xAHPa3qfj39yI0AWO0HqbtUng=",
+      "PaySys.Client.pdb": "sha256-F263O5FawpV03gnXm7QeMdnDX4fXqhpt2PK2wxRhwyU=",
       "PaySys.Shared.pdb": "sha256-2ifGbz0ptIWcf0MGS1DJ6gq7maZrZ+mBRBuf71P9Ij4="
     },
     "runtime": {

@@ -119,12 +119,17 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
+#line 46 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
        
     private List<Wallet> WalletList;
     private string Currency;
 
     protected override async Task OnInitializedAsync()
+    {
+        await LoadWallets();
+    }
+
+    private async Task LoadWallets()
     {
         try
         {
@@ -147,15 +152,21 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
             if (response.IsSuccessStatusCode)
             {
-                var newWallet = new Wallet
-                {
-                    Id = Guid.NewGuid(),
-                    Amount = 0,
-                    Currency = Currency
-                };
-
-                WalletList.Add(newWallet);
+                await LoadWallets();
             }
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        } 
+    }
+
+    private async Task DeleteWallet(Guid id)
+    {
+        try
+        {
+            await HttpClient.DeleteAsync("/wallet" + id);
+            await LoadWallets();
         }
         catch (AccessTokenNotAvailableException exception)
         {
