@@ -86,7 +86,6 @@ using blazor.demo.course.server.Shared;
 #nullable restore
 #line 21 "F:\NET-TECH-COURSE\blazor.demo.course.server\Pages\Bonus.razor"
        
-
     decimal totalBudget = 1000000;
 
     decimal Remaining => totalBudget - budgetItems.Sum(x => x.Amount);
