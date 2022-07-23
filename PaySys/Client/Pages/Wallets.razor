@@ -1,0 +1,52 @@
+﻿@page "/wallets"
+@using PaySys.Shared
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpClient HttpClient
+
+<style>
+    .wallet{
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+
+<h3>Wallets</h3>
+
+@if (WalletList == null || WalletList.Length == 0)
+{
+    <div>Loading...</div>
+}
+else
+{
+    @foreach (var wallet in WalletList)
+    {
+        <div class="wallet">
+            <div>@wallet.Id</div>
+            <div>
+                <div>@wallet.Amount</div>
+                <div>@wallet.Currency</div>
+            </div>
+        </div>
+    }
+}
+
+
+@code {
+    private Wallet[] WalletList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            WalletList = await HttpClient.GetFromJsonAsync<Wallet[]>("api/wallet");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+}
