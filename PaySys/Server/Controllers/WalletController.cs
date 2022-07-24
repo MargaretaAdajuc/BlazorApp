@@ -17,7 +17,9 @@ namespace PaySys.Server.Controllers
     public class WalletController : ControllerBase
     {
         private readonly ApplicationDbContext context;
+
         private readonly UserManager<ApplicationUser> userManager;
+
         public WalletController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             this.context = context;
@@ -48,17 +50,30 @@ namespace PaySys.Server.Controllers
             var userId = userManager.GetUserId(User);
             var user = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId);
 
-            if (!user.Wallets.Any(x => x.Id == Guid.Parse(data.SourceWalletId)))
+            if (!user.Wallets.Any(x => x.Currency == data.Currency))
             {
                 return BadRequest();
             }
-            var source = user.Wallets.FirstOrDefault(x => x.Id == Guid.Parse(data.SourceWalletId));
-            var destinationUser = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.UserName == data.Username);
-            var destination = destinationUser.Wallets.FirstOrDefault(x => x.Currency == data.Currency);
+            var source = user.Wallets.FirstOrDefault(x => x.Currency == data.Currency);
 
-            if(destination == null || source.Amount < data.Amount)
+            if (source.Amount < data.Amount)
             {
                 return BadRequest();
+            }
+
+            var destinationUser = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.UserName == data.Username);
+
+            var destination = destinationUser.Wallets.FirstOrDefault(x => x.Currency == data.Currency);
+
+            if(destination == null)
+            {
+                destination = new Wallet
+                {
+                    Amount = 0,
+                    Currency = data.Currency
+                };
+
+                destinationUser.Wallets.Add(destination);
             }
 
             source.Amount -= data.Amount;
