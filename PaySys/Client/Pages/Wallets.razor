@@ -17,7 +17,7 @@
 
 <h3>Wallets</h3>
 
-@if (WalletList == null || WalletList.Count == 0)
+@if (WalletList == null)
 {
     <div>Loading...</div>
 }
@@ -26,7 +26,6 @@ else
     @foreach (var wallet in WalletList)
     {
         <div class="wallet">
-            <div>@wallet.Id</div>
             <div>
                 <span>@wallet.Amount</span>
                 <span>@wallet.Currency</span>
@@ -37,33 +36,76 @@ else
             </div>
         </div>
     }
-}
 
-<div>   
-    <h3>Create a new wallet</h3>
-    <input type="text" placeholder="Currency" @bind="Currency" />
-    <button @onclick="() => CreateWallet()">Create wallet</button>
-</div>
+    @if(AllowedCurrencies.Any())
+    {
+        <div>   
+            <h3>Create a new wallet</h3>
+            <select @bind="Currency">
+                @foreach (var currency in AllowedCurrencies)
+                {
+                    <option value="@currency">@currency</option>
+                }
+            </select>
+            <button @onclick="() => CreateWallet()">Create wallet</button>
+        </div>
+    }
+    else
+    {
+        <div>You already have a wallet in each currency. You can't create any more wallets.</div>
+    }
+}
 
 @code {
     private List<Wallet> WalletList;
+    private List<string> AllowedCurrencies;
+    private CurrencyList CurrencyList;
     private string Currency;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadWallets();
+        await LoadCurrencies();
+        GetAllowedCurrencies();
+    }
+
+    private async Task LoadCurrencies()
+    {
+        try
+        {
+            CurrencyList = await HttpClient.GetFromJsonAsync<CurrencyList>("/currency");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }   
     }
 
     private async Task LoadWallets()
     {
         try
         {
-            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>($"/wallet");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>("/wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
             exception.Redirect();
         }
+    }
+
+    private void GetAllowedCurrencies()
+    {
+        AllowedCurrencies = new List<string>();
+
+        foreach (var currency in CurrencyList.CurrencyNames)
+        {
+            if(!WalletList.Any(x => x.Currency == currency))
+            {
+                AllowedCurrencies.Add(currency);
+            }
+        }
+
+        AllowedCurrencies.FirstOrDefault();
     }
 
     private async Task CreateWallet()
@@ -78,6 +120,7 @@ else
             if (response.IsSuccessStatusCode)
             {
                 await LoadWallets();
+                GetAllowedCurrencies();
             }
         }
         catch (AccessTokenNotAvailableException exception)
@@ -90,8 +133,9 @@ else
     {
         try
         {
-            await HttpClient.DeleteAsync($"api/wallet" + id);
+            await HttpClient.DeleteAsync("/wallet" + id);
             await LoadWallets();
+            GetAllowedCurrencies();
         }
         catch (AccessTokenNotAvailableException exception)
         {
