@@ -82,15 +82,24 @@ namespace PaySys.Server.Controllers
         [HttpPost]
         public IActionResult CreateWallet([FromQuery]string currency)
         {
+            if(CurrencyManager.Currencies.Contains(currency))
+            {
+                return BadRequest();
+            }
+            
             var userId = userManager.GetUserId(User);
+            var user = context.Users.FirstOrDefault(x => x.Id == userId);
+
+            if(user.Wallets.Any(x => x.Currency == currency))
+            {
+                return BadRequest();
+            }
 
             var wallet = new Wallet 
             { 
                 Currency = currency,
                 Amount = 0
             };
-
-            var user = context.Users.FirstOrDefault(x => x.Id == userId);
 
             if (user.Wallets == null)
             {

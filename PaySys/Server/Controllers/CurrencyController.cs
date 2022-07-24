@@ -14,13 +14,7 @@ namespace PaySys.Server.Controllers
         {
             return new CurrencyList
             {
-                CurrencyNames = new List<string>
-                {
-                    "EUR",
-                    "MDL",
-                    "USD",
-                    "EC"
-                }
+                CurrencyNames = CurrencyManager.Currencies
             };
         }   
     }
