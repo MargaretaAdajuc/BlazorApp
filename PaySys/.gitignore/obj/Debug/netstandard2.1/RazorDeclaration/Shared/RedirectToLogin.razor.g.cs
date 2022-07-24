@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace PaySys.Client.Pages
+namespace PaySys.Client.Shared
 {
     #line hidden
     using System;
@@ -83,35 +83,13 @@ using PaySys.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
-using PaySys.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
-using Microsoft.AspNetCore.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 2 "F:\NET-TECH-COURSE\PaySys\Client\Shared\RedirectToLogin.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 5 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
-           [Authorize]
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/transfer/{sourceWalletId}")]
-    public partial class Transfer : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class RedirectToLogin : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -119,50 +97,17 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 3 "F:\NET-TECH-COURSE\PaySys\Client\Shared\RedirectToLogin.razor"
        
-    [Parameter]
-    public string SourceWalletId { get; set; }
-    public Wallet wallet { get; set; }
-    public TransferDto transferData { get; set; } = new TransferDto();
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        try
-        {
-            wallet = await HttpClient.GetFromJsonAsync<Wallet>($"/wallet/{SourceWalletId}");
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
-    }
-
-    private async Task MakeTransfer()
-    {
-        try
-        {
-            transferData.SourceWalletId = SourceWalletId;
-            transferData.Currency = wallet.Currency;
-            var response = await HttpClient.PostAsJsonAsync($"/wallet/transfer", transferData);
-
-            if (response.IsSuccessStatusCode)
-            {
-                navMananger.NavigateTo($"/wallets");
-            }
-
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
+        Navigation.NavigateTo($"authentication/login?returnUrl={Uri.EscapeDataString(Navigation.Uri)}");
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navMananger { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient HttpClient { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Navigation { get; set; }
     }
 }
 #pragma warning restore 1591

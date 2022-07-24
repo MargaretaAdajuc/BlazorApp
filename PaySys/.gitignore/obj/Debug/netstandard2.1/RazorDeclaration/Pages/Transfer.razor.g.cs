@@ -148,7 +148,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
             if (response.IsSuccessStatusCode)
             {
-                navMananger.NavigateTo($"/wallets");
+                navMananger.NavigateTo($"/wallet");
             }
 
         }

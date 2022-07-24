@@ -83,35 +83,35 @@ using PaySys.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 2 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
 using PaySys.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 3 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 4 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 5 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
            [Authorize]
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/transfer/{sourceWalletId}")]
-    public partial class Transfer : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/wallets")]
+    public partial class Wallets : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -119,18 +119,21 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Transfer.razor"
+#line 48 "F:\NET-TECH-COURSE\PaySys\Client\Pages\Wallets.razor"
        
-    [Parameter]
-    public string SourceWalletId { get; set; }
-    public Wallet wallet { get; set; }
-    public TransferDto transferData { get; set; } = new TransferDto();
+    private List<Wallet> WalletList;
+    private string Currency;
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadWallets();
+    }
+
+    private async Task LoadWallets()
+    {
         try
         {
-            wallet = await HttpClient.GetFromJsonAsync<Wallet>($"/wallet/{SourceWalletId}");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>($"/wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -138,24 +141,49 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         }
     }
 
-    private async Task MakeTransfer()
+    private async Task CreateWallet()
     {
         try
         {
-            transferData.SourceWalletId = SourceWalletId;
-            transferData.Currency = wallet.Currency;
-            var response = await HttpClient.PostAsJsonAsync($"/wallet/transfer", transferData);
+            if (string.IsNullOrWhiteSpace(Currency))
+                return; 
+
+            var response = await HttpClient.PostAsync($"/wallet?currency=" + Currency, null);
 
             if (response.IsSuccessStatusCode)
             {
-                navMananger.NavigateTo($"/wallets");
+                await LoadWallets();
             }
-
         }
         catch (AccessTokenNotAvailableException exception)
         {
             exception.Redirect();
+        } 
+    }
+    
+    private async Task DeleteWallet(Guid id)
+    {
+        try
+        {
+            await HttpClient.DeleteAsync($"api/wallet" + id);
+            await LoadWallets();
         }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        } 
+    }
+
+    private async Task MakeTransfer(Guid id)
+    {
+        try
+        {
+            navMananger.NavigateTo($"/transfer/{id}");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        } 
     }
 
 #line default
