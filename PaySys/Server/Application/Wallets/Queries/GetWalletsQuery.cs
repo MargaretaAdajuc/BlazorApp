@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using PaySys.Server.Data;
 using PaySys.Server.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

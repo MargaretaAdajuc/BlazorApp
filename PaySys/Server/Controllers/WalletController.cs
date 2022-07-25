@@ -13,6 +13,7 @@ using Wallet = PaySys.Server.Models.Wallet;
 using MediatR;
 using PaySys.Server.Application.Wallets.Queries;
 using System.Threading.Tasks;
+using PaySys.Server.Application.Wallets.Commands;
 
 namespace PaySys.Server.Controllers
 {
@@ -77,6 +78,11 @@ namespace PaySys.Server.Controllers
             var destinationUser = context.Users.Include(x => x.Wallets)
                 .FirstOrDefault(x => x.UserName == data.Username);
 
+            if (destinationUser == null)
+            {
+                throw new NotFoundException();
+            }
+
             var destination = destinationUser
                 .Wallets.FirstOrDefault(x => x.Currency == data.Currency);
 
@@ -110,36 +116,21 @@ namespace PaySys.Server.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateWallet([FromQuery]string currency)
+        public async Task<IActionResult> CreateWallet([FromQuery]string currency)
         {
-            if(CurrencyManager.Currencies.Contains(currency))
+            var createWalletCommand = new CreateWalletCommand
             {
-                return BadRequest();
-            }
-            
-            var userId = userManager.GetUserId(User);
-            var user = context.Users.FirstOrDefault(x => x.Id == userId);
-
-            if(user.Wallets.Any(x => x.Currency == currency))
-            {
-                return BadRequest();
-            }
-
-            var wallet = new Wallet
-            { 
-                Currency = currency,
-                Amount = 0
+                UserId = userManager.GetUserId(User),
+                Currency = currency 
             };
 
-            if (user.Wallets == null)
+            var createWalletResult = await mediator.Send(createWalletCommand);
+
+            if (!createWalletResult.IsSuccessful)
             {
-                user.Wallets = new List<Wallet> ();
+                return BadRequest();
             }
             
-            user.Wallets.Add(wallet);   
-
-            context.SaveChanges();
-
             return Ok();
         }
 
@@ -164,7 +155,7 @@ namespace PaySys.Server.Controllers
 
         [HttpGet]
         [Route("transfers/{itemsPerPage}/{pageNumber}")]
-        public TransactionHistoryData GetTransactions(int itemsPerPage, int pageNumber, [FromQuery] Direction direction)
+        public TransactionsHistoryData GetTransactions(int itemsPerPage, int pageNumber, [FromQuery] Direction direction)
         {
             var userId = userManager.GetUserId(User);
 
@@ -199,7 +190,7 @@ namespace PaySys.Server.Controllers
                     break;
             }
             
-            var transactionData = new TransactionHistoryData
+            var transactionData = new TransactionsHistoryData
             {
                 Transactions = transactions.Select(DomainMapper.ToDto).ToArray(),
                 ItemCount = query.Count()

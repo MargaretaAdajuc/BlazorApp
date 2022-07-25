@@ -3,6 +3,9 @@
 @attribute [Authorize]
 @inject HttpClient HttpClient
 @inject NavigationManager navManager
+@inject IModalService Modal
+@using Microsoft.AspNetCore.WebUtilities
+@using PaySys.Client.Modals
 
 <style>
     .wallet{
@@ -65,6 +68,15 @@ else
         await LoadWallets();
         await LoadCurrencies();
         GetAllowedCurrencies();
+
+        var uri = navManager.ToAbsoluteUri(navManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(Constants.transferSuccess, out var successValue))
+        {
+            if (!Convert.ToBoolean(successValue))
+            {
+                Modal.Show<TransferStatusModal>("Transfer result");
+            }
+        }
     }
 
     private async Task LoadCurrencies()
@@ -113,7 +125,7 @@ else
             if (string.IsNullOrWhiteSpace(Currency))
                 return; 
 
-            var response = await HttpClient.PostAsync($"api/wallet?currency=" + Currency, null);
+            var response = await HttpClient.PostAsync("api/wallet?currency=" + Currency, null);
 
             if (response.IsSuccessStatusCode)
             {
@@ -131,7 +143,7 @@ else
     {
         try
         {
-            await HttpClient.DeleteAsync("api/wallet/" + id);
+            await HttpClient.DeleteAsync("api/wallet/" +id);
             await LoadWallets();
             GetAllowedCurrencies();
         }
@@ -145,7 +157,7 @@ else
     {
         try
         {
-            navManager.NavigateTo($"/transfer/{id}");
+            navManager.NavigateTo($"transfer/{id}");
         }
         catch (AccessTokenNotAvailableException exception)
         {

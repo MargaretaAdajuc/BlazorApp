@@ -1,19 +1,17 @@
+using Blazored.Modal;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaySys.Server.Application.Promotion;
 using PaySys.Server.Data;
+using PaySys.Server.Middleware;
 using PaySys.Server.Models;
-using System.Linq;
 using System.Security.Claims;
 
 namespace PaySys.Server
@@ -48,7 +46,9 @@ namespace PaySys.Server
             options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
             services.AddMediatR(typeof(Startup));
-
+            services.AddSingleton<IPromotionManager, PromotionManager>();
+            services.AddTransient<ExceptionHandlingMiddleware>();
+            services.AddBlazoredModal();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -78,6 +78,8 @@ namespace PaySys.Server
             app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
