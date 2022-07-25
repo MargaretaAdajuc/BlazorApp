@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using PaySys.Server.Data;
 using PaySys.Server.Models;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PaySys.Server
 {
@@ -41,6 +43,11 @@ namespace PaySys.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            services.Configure<IdentityOptions>(options =>
+            options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
+
+            services.AddMediatR(typeof(Startup));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
