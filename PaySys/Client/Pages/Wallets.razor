@@ -3,6 +3,9 @@
 @attribute [Authorize]
 @inject HttpClient HttpClient
 @inject NavigationManager navManager
+@inject IModalService Modal
+@using Microsoft.AspNetCore.WebUtilities
+@using PaySys.Client.Modals
 
 <style>
     .wallet{
@@ -65,6 +68,15 @@ else
         await LoadWallets();
         await LoadCurrencies();
         GetAllowedCurrencies();
+
+        var uri = navManager.ToAbsoluteUri(navManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(Constants.transferSuccess, out var successValue))
+        {
+            if (!Convert.ToBoolean(successValue))
+            {
+                Modal.Show<TransferStatusModal>("Transfer result");
+            }
+        }
     }
 
     private async Task LoadCurrencies()
