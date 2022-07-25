@@ -33,7 +33,8 @@ namespace PaySys.Server.Controllers
         public List<Wallet> GetWallets()
         {
             var userId = userManager.GetUserId(User);
-            var wallets = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets;
+            var wallets = context
+                .Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets;
             return wallets;
         }
 
@@ -42,7 +43,9 @@ namespace PaySys.Server.Controllers
         public Wallet GetWallet(Guid id)
         {
             var userId = userManager.GetUserId(User);
-            var wallet = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets.FirstOrDefault(x => x.Id == id);
+            var wallet = context
+                .Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId)
+                .Wallets.FirstOrDefault(x => x.Id == id);
             return wallet;
         }
 
@@ -64,9 +67,11 @@ namespace PaySys.Server.Controllers
                 return BadRequest();
             }
 
-            var destinationUser = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.UserName == data.Username);
+            var destinationUser = context.Users.Include(x => x.Wallets)
+                .FirstOrDefault(x => x.UserName == data.Username);
 
-            var destination = destinationUser.Wallets.FirstOrDefault(x => x.Currency == data.Currency);
+            var destination = destinationUser
+                .Wallets.FirstOrDefault(x => x.Currency == data.Currency);
 
             if(destination == null)
             {
@@ -151,17 +156,49 @@ namespace PaySys.Server.Controllers
         }
 
         [HttpGet]
-        [Route("transfers")]
-        public TransactionDto[] GetTransactions()
+        [Route("transfers/{itemsPerPage}/{pageNumber}")]
+        public TransactionHistoryData GetTransactions(int itemsPerPage, int pageNumber, [FromQuery] Direction direction)
         {
             var userId = userManager.GetUserId(User);
 
-            var walletIds = context.Wallets.Where(w => w.ApplicationUserId == userId).Select(w => w.Id).ToList();
+            var walletIds = context.Wallets
+                .Where(w => w.ApplicationUserId == userId)
+                .Select(w => w.Id).ToList();
 
-            var transactions = context.Transactions.Where(t => 
-                (walletIds.Contains(t.DestinationWalletId)) || (walletIds.Contains(t.SourceWalletId))).ToArray();
+            var query = context.Transactions.Where(t =>
+                (walletIds.Contains(t.DestinationWalletId)) || (walletIds.Contains(t.SourceWalletId)));
 
-            return transactions.Select(DomainMapper.ToDto).ToArray();
+            Transaction[] transactions = null;
+
+            switch (direction)
+            {
+                
+                case Direction.Inbound:
+                    query = context.Transactions.Where(t => walletIds.Contains(t.SourceWalletId));
+                    transactions = query.OrderByDescending(x => x.Date)
+                        .Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage).ToArray();
+                    break;
+                case Direction.Outbound:
+                    query = context.Transactions.Where(t => walletIds.Contains(t.DestinationWalletId));
+                    transactions = query.OrderByDescending(x => x.Date)
+                        .Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage).ToArray();
+                    break;
+                default:
+                case Direction.None:
+                    query = context.Transactions.Where(t =>
+                       walletIds.Contains(t.DestinationWalletId) || walletIds.Contains(t.SourceWalletId));
+                    transactions = query.OrderByDescending(x => x.Date)
+                        .Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage).ToArray();
+                    break;
+            }
+            
+            var transactionData = new TransactionHistoryData
+            {
+                Transactions = transactions.Select(DomainMapper.ToDto).ToArray(),
+                ItemCount = query.Count()
+            };
+
+            return transactionData;
         }
     }
 }
