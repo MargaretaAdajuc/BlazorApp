@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaySys.Server.Application.Promotion;
 using PaySys.Server.Data;
 using PaySys.Server.Middleware;
 using PaySys.Server.Models;
@@ -45,6 +46,7 @@ namespace PaySys.Server
             options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
             services.AddMediatR(typeof(Startup));
+            services.AddSingleton<IPromotionManager, PromotionManager>();
             services.AddTransient<ExceptionHandlingMiddleware>();
             services.AddBlazoredModal();
             services.AddControllersWithViews();
