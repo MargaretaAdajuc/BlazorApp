@@ -150,7 +150,7 @@ namespace PaySys.Server.Controllers
 
         [HttpGet]
         [Route("transfers/{itemsPerPage}/{pageNumber}")]
-        public TransactionHistoryData GetTransactions(int itemsPerPage, int pageNumber, [FromQuery] Direction direction)
+        public TransactionsHistoryData GetTransactions(int itemsPerPage, int pageNumber, [FromQuery] Direction direction)
         {
             var userId = userManager.GetUserId(User);
 
@@ -185,7 +185,7 @@ namespace PaySys.Server.Controllers
                     break;
             }
             
-            var transactionData = new TransactionHistoryData
+            var transactionData = new TransactionsHistoryData
             {
                 Transactions = transactions.Select(DomainMapper.ToDto).ToArray(),
                 ItemCount = query.Count()

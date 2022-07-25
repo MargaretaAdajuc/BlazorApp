@@ -1,4 +1,4 @@
-﻿@page "/transfer/{sourceWalletId}"
+﻿@page "/transfer"
 @using PaySys.Shared
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -23,21 +23,6 @@
 }
 else
 {
-    @*<div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Wallet @wallet.Id</h5>
-            <p class="card-text">Amount: @wallet.Amount @wallet.Currency</p>
-            <p>
-                Amount: <br /> 
-                <input @bind="transferData.Amount" />
-            </p>
-            <p>
-                Username: <br /> 
-                <input @bind="transferData.Username" />
-            </p>
-            <button class="btn btn-primary" @onclick="MakeTransfer">Transfer</button>
-        </div>
-    </div>*@
     <div>
         <div>
             <span>Select currency: </span>
@@ -50,7 +35,7 @@ else
         </div>
         <div>
             <span>Input recipient name: </span>
-            <input type="text" @bind="transferData.Username" @onfocusout="ValidateUser" class="@RecipientInputClass"/>
+            <input type="text" @bind="transferData.Username" @onfocusout="ValidateUser" class="@RecipientInputClass" />
         </div>
         <div>
             <span>Amount</span>
@@ -114,10 +99,8 @@ else
         {
             var response = await HttpClient.PostAsJsonAsync($"api/wallet/transfer", transferData);
 
-            if (response.IsSuccessStatusCode)
-            {
-                navManager.NavigateTo($"wallets");
-            }
+            navManager.NavigateTo($"wallets?{Constants.transferSuccess}={response.IsSuccessStatusCode}");
+
         }
         catch (AccessTokenNotAvailableException exception)
         {
