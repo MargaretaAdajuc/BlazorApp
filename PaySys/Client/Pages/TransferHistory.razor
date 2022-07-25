@@ -1,0 +1,77 @@
+﻿@page "/transfer/history"
+@attribute [Authorize]
+@inject HttpClient HttpClient
+
+<style>
+    /* Pagination links */
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+    /* Style the active/current link */
+    .pagination a.active {
+        background-color: dodgerblue;
+        color: white;
+    }
+    /* Add a grey background color on mouse-over */
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+
+<h3>TransferHistory</h3>
+
+@if (transactions == null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Date</td>
+            <td>Amount</td>
+            <td>DestinationWalletId</td>
+            <td>SourceWalletId</td>
+            <td>Id</td>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach(var transaction in transactions)
+            {
+                <tr>
+                    <td>@transaction.Date</td>
+                    <td>@transaction.Amount</td>
+                    <td>@transaction.DestinationWalletId</td>
+                    <td>@transaction.SourceWalletId</td>
+                    <td>@transaction.Id</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private TransactionDto[] transactions;
+    private int pageNumber;
+    private int itemsPerPage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTransactions();
+    }
+
+    private async Task LoadTransactions()
+    {
+        try
+        {
+            transactions = await HttpClient.GetFromJsonAsync<TransactionDto[]>($"api/wallet/transfers/{pageNumber}");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }   
+    }
+}

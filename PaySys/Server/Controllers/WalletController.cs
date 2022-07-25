@@ -7,12 +7,15 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using PaySys.Client.Shared;
+using PaySys.Shared;
+using PaySys.Server.Helpers;
+using Wallet = PaySys.Server.Models.Wallet;
+
 
 namespace PaySys.Server.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class WalletController : ControllerBase
     {
@@ -110,7 +113,7 @@ namespace PaySys.Server.Controllers
                 return BadRequest();
             }
 
-            var wallet = new Wallet 
+            var wallet = new Wallet
             { 
                 Currency = currency,
                 Amount = 0
@@ -145,6 +148,20 @@ namespace PaySys.Server.Controllers
             context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("transfers")]
+        public TransactionDto[] GetTransactions()
+        {
+            var userId = userManager.GetUserId(User);
+
+            var walletIds = context.Wallets.Where(w => w.ApplicationUserId == userId).Select(w => w.Id).ToList();
+
+            var transactions = context.Transactions.Where(t => 
+                (walletIds.Contains(t.DestinationWalletId)) || (walletIds.Contains(t.SourceWalletId))).ToArray();
+
+            return transactions.Select(DomainMapper.ToDto).ToArray();
         }
     }
 }

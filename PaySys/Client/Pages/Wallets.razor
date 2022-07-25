@@ -1,10 +1,8 @@
 ﻿@page "/wallets"
-@using PaySys.Shared
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
 @attribute [Authorize]
 @inject HttpClient HttpClient
-@inject NavigationManager navMananger
+@inject NavigationManager navManager
 
 <style>
     .wallet{
@@ -73,7 +71,7 @@ else
     {
         try
         {
-            CurrencyList = await HttpClient.GetFromJsonAsync<CurrencyList>("/currency");
+            CurrencyList = await HttpClient.GetFromJsonAsync<CurrencyList>("api/currency");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -85,7 +83,7 @@ else
     {
         try
         {
-            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>("/wallet");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>("api/wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -97,7 +95,7 @@ else
     {
         AllowedCurrencies = new List<string>();
 
-        foreach (var currency in CurrencyList.CurrencyNames)
+        foreach (var currency in CurrencyList.Currencies)
         {
             if(!WalletList.Any(x => x.Currency == currency))
             {
@@ -105,7 +103,7 @@ else
             }
         }
 
-        AllowedCurrencies.FirstOrDefault();
+        Currency = AllowedCurrencies.FirstOrDefault();
     }
 
     private async Task CreateWallet()
@@ -115,7 +113,7 @@ else
             if (string.IsNullOrWhiteSpace(Currency))
                 return; 
 
-            var response = await HttpClient.PostAsync($"/wallet?currency=" + Currency, null);
+            var response = await HttpClient.PostAsync($"api/wallet?currency=" + Currency, null);
 
             if (response.IsSuccessStatusCode)
             {
@@ -133,7 +131,7 @@ else
     {
         try
         {
-            await HttpClient.DeleteAsync("/wallet" + id);
+            await HttpClient.DeleteAsync("api/wallet/" + id);
             await LoadWallets();
             GetAllowedCurrencies();
         }
@@ -147,7 +145,7 @@ else
     {
         try
         {
-            navMananger.NavigateTo($"/transfer/{id}");
+            navManager.NavigateTo($"/transfer/{id}");
         }
         catch (AccessTokenNotAvailableException exception)
         {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PaySys.Client.Shared
+﻿namespace PaySys.Shared
 {
     public class TransferDto
     {

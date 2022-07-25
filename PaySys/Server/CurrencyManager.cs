@@ -13,7 +13,8 @@ namespace PaySys.Server
                 "EUR",
                 "MDL",
                 "USD",
-                "EC"
+                "EC",
+                "BTC"
             };
 
         }

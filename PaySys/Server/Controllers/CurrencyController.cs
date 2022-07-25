@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PaySys.Shared;
-using System.Collections.Generic;
 
 namespace PaySys.Server.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CurrencyController : ControllerBase
     {
@@ -14,7 +12,7 @@ namespace PaySys.Server.Controllers
         {
             return new CurrencyList
             {
-                CurrencyNames = CurrencyManager.Currencies
+                Currencies = CurrencyManager.Currencies
             };
         }   
     }

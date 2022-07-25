@@ -6,6 +6,6 @@ namespace PaySys.Shared
 {
     public class CurrencyList
     {
-        public List<string> CurrencyNames { get; set; }
+        public List<string> Currencies { get; set; }
     }
 }

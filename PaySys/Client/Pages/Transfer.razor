@@ -4,7 +4,7 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @attribute [Authorize]
 @inject HttpClient HttpClient
-@inject NavigationManager navMananger
+@inject NavigationManager navManager
 
 <style>
     .wallet{
@@ -50,7 +50,7 @@ else
         </div>
         <div>
             <span>Input recipient name: </span>
-            <input type="text" @bind="transferData.UserName" @onfocusout="ValidateUser" class="@RecipientInputClass"/>
+            <input type="text" @bind="transferData.Username" @onfocusout="ValidateUser" class="@RecipientInputClass"/>
         </div>
         <div>
             <span>Amount</span>
@@ -78,7 +78,7 @@ else
     {
         try
         {
-            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>($"/wallet");
+            WalletList = await HttpClient.GetFromJsonAsync<List<Wallet>>($"api/wallet");
             transferData.Currency = WalletList.FirstOrDefault()?.Currency;
         }
         catch (AccessTokenNotAvailableException exception)
@@ -91,7 +91,7 @@ else
     {
         try
         {
-            var result = await HttpClient.GetFromJsonAsync<UserValidationResult>($"/user/{transferData.Username}/validate");
+            var result = await HttpClient.GetFromJsonAsync<UserValidationResult>($"api/user/{transferData.Username}/validate");
 
             if (result.Exists)
             {
@@ -112,12 +112,11 @@ else
     {
         try
         {
-            transferData.Currency = Currency;
-            var response = await HttpClient.PostAsJsonAsync($"/wallet/transfer", transferData);
+            var response = await HttpClient.PostAsJsonAsync($"api/wallet/transfer", transferData);
 
             if (response.IsSuccessStatusCode)
             {
-                navMananger.NavigateTo("wallets");
+                navManager.NavigateTo($"wallets");
             }
         }
         catch (AccessTokenNotAvailableException exception)
