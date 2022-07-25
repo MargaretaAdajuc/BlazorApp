@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 using PaySys.Shared;
 using PaySys.Server.Helpers;
 using Wallet = PaySys.Server.Models.Wallet;
-
+using MediatR;
+using PaySys.Server.Application.Wallets.Queries;
+using System.Threading.Tasks;
 
 namespace PaySys.Server.Controllers
 {
@@ -22,19 +24,24 @@ namespace PaySys.Server.Controllers
         private readonly ApplicationDbContext context;
 
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IMediator mediator;
 
-        public WalletController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public WalletController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             this.context = context;
             this.userManager = userManager;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public List<Wallet> GetWallets()
+        public async Task<List<Wallet>> GetWallets()
         {
-            var userId = userManager.GetUserId(User);
-            var wallets = context
-                .Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets;
+            var query = new GetWalletsQuery
+            {
+                UserId = userManager.GetUserId(User)
+            };
+
+            var wallets = await mediator.Send(query);
             return wallets;
         }
 

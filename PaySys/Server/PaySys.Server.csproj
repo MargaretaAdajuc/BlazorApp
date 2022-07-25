@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.1" />
   </ItemGroup>
 
@@ -24,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Application\Wallets\Commands\" />
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
