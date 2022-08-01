@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "PaySysServer",
+      "defaultValue": "pay-sys-web-app",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
