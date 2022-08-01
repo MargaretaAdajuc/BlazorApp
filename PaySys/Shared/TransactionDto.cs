@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PaySys.Server.Models
+namespace PaySys.Shared
 {
-    public class Transaction
+    public class TransactionDto
     {
         public Guid Id { get; set; }
         public Guid SourceWalletId { get; set; }
